@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.osgi.framework.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ import com.eggmoney.ws.domain.service.UserService;
 @Service
 public class UserServiceImpl implements UserService{
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	@Resource
 	private UserDao userDao;
@@ -42,7 +41,7 @@ public class UserServiceImpl implements UserService{
 		for(AssignedAuthority auth : authList){
 			user.addAuthority(auth);
 		}
-		return user;
+		return null;
 	}
 
 	@Override

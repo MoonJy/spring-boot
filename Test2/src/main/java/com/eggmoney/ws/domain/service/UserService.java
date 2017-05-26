@@ -6,6 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import com.eggmoney.ws.domain.entity.User;
 
 public interface UserService extends UserDetailsService{
-	public User findById(String id) throws ServiceException;
-	public void insert(User user) throws ServiceException;
+	User findById(String id) throws ServiceException;
+	void insert(User user) throws ServiceException;
 }

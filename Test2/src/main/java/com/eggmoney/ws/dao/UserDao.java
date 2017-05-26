@@ -8,8 +8,8 @@ import com.eggmoney.ws.domain.entity.User;
 @Repository
 public interface UserDao {
 
-	User findById(String user_id) throws DataAccessException;
+	public User findById(String user_id) throws DataAccessException;
 
-	void insert(User user) throws DataAccessException;
+	public void insert(User user) throws DataAccessException;
 
 }
