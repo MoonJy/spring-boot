@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eggmoney.ws.dao.UserDao">
+	<select id="findById" parameterType="string" resultType="User">
+    	SELECT  MEMBER_NO
+				,MEMBER_ID
+				,PASSWORD
+				,USERNAME AS NAME
+				,MEMBER_TYPE
+				,ACCOUNT_TYPE
+				,GRADE
+				,STATUS
+				,PHONE_NO
+				,NICKNAME
+				,MOBILE_NO
+				,EMAIL
+				,MAILING_YN
+				,SMS_YN
+				,MEMBER_TYPE AS GRADE
+				,WITHDRAWAL_DATE
+				,CREATE_DATE
+				,UPDATE_DATE
+				,ALLOWED_IP
+				,PERSON_AGREE
+				,PERSON_AGREE_DATE
+				,ATTEMPT_LOGIN_COUNT
+				,LAST_LOGINED
+				,LOGIN_IP
+				,PASSWORD_CH_DATE
+				,OPEN_YN
+				,PARTNER_ID
+				,PROFILE_URL
+				,PROFILE_FILE
+				,PROFILE_PATH
+				,MILEAGE
+         FROM T_MEMBER usr
+   		WHERE MEMBER_ID = BINARY(#{member_id})
+  	</select>
+  	
+  	<insert id="insert" parameterType="User">
+    	INSERT INTO T_MEMBER (
+			 MEMBER_ID
+			,PASSWORD
+			,USERNAME
+			,MEMBER_TYPE
+			,ACCOUNT_TYPE
+			,GRADE
+			,STATUS
+			,PHONE_NO
+			,NICKNAME
+			,MOBILE_NO
+			,EMAIL
+			,MAILING_YN
+			,SMS_YN
+			,ALLOWED_IP
+			,PERSON_AGREE
+			,PERSON_AGREE_DATE
+			,PASSWORD_CH_DATE
+			,CREATE_DATE
+		)
+    	VALUES (
+    		 #{member_id}
+    		,PASSWORD(#{plain_password})
+    		,#{name}
+    		,#{member_type}
+    		,#{account_type}
+			,#{grade}
+    		,1
+    		,#{phone_no}
+    		,#{nickname}
+    		,#{mobile_no}
+    		,#{email}
+    		,#{mailing_yn}
+    		,#{sms_yn}
+    		,'*'
+    		,#{person_agree}
+    		,NOW()
+    		,NOW()
+    		,NOW()
+    	)
+		<selectKey resultType="long" keyProperty="member_no" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+  	</insert>
+  	
+</mapper>

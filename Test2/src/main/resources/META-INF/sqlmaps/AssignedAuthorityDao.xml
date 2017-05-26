@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.eggmoney.ws.dao.UserDao">
+
+    <select id="findListByGrade"  parameterType="string" resultType="AssignedAuthority">
+		SELECT GRADE, AUTHORITY,
+               ( SELECT NAME FROM T_AUTHORITY auth WHERE auth.AUTHORITY = assigned.AUTHORITY ) AS NAME,
+               ( SELECT NAME FROM T_GRADE grade WHERE grade.GRADE = assigned.GRADE ) AS GRADE_NAME
+          FROM T_ASSIGNED_AUTHORITY assigned 
+         WHERE GRADE = #{grade}
+	  ORDER BY AUTHORITY DESC
+	</select>
+
+    <insert id="insert" parameterType="AssignedAuthority">
+    	INSERT INTO T_ASSIGNED_AUTHORITY (
+    		 GRADE
+    		,AUTHORITY
+		)
+    	VALUES (
+    		 #{grade		,jdbcType=VARCHAR}
+    		,#{authority	,jdbcType=VARCHAR}
+    	)
+  	</insert>
+
+    <delete id="delete" parameterType="string" >
+   		DELETE FROM T_ASSIGNED_AUTHORITY
+    	WHERE GRADE = #{grade}
+  	</delete>
+
+</mapper>

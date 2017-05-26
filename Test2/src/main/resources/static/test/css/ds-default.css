@@ -1,0 +1,292 @@
+@charset "UTF-8";
+
+
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+    padding-top: 70px;
+}
+
+footer {
+    padding: 30px 0;
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 767px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+    }
+
+    .row-offcanvas-right {
+        right: 0;
+    }
+
+    .row-offcanvas-left {
+        left: 0;
+    }
+
+    .row-offcanvas-right
+    .sidebar-offcanvas {
+        right: -100%; /* 12 columns */
+    }
+
+    .row-offcanvas-right.active
+    .sidebar-offcanvas {
+        right: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-left
+    .sidebar-offcanvas {
+        left: -100%; /* 12 columns */
+    }
+
+    .row-offcanvas-left.active
+    .sidebar-offcanvas {
+        left: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-right.active {
+        right: 50%; /* 6 columns */
+    }
+
+    .row-offcanvas-left.active {
+        left: 50%; /* 6 columns */
+    }
+
+    .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 50%; /* 6 columns */
+    }
+}
+
+
+.btn {
+    border-radius: 0px;
+}
+
+
+.register_sns_box {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: #eee solid 1px;
+}
+
+.register_sns_box .text-small {
+    text-align: left;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.register_sns_box a {
+    margin-right: 1px;
+    width: 42px;
+    padding: 1px;
+    display: inline-block;
+    background-color: #ccc;
+    border: none;
+}
+
+
+.register_sns_box .btn-social>:first-child {
+    border: none;
+}
+
+.register .group.id .form-control, .register .group.pw .form-control, .register .group.option .form-control {
+    height: 52px;
+}
+
+.register .group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.register .group .tooltip2 {
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    font-size: 13px;
+    color: #999;
+    opacity: 0;
+    transition: all .600s;
+}
+
+.register .agreement {
+    text-align: left;
+}
+
+.register .agreement>div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.register .agreement input[type=checkbox] {
+    margin: 0;
+    vertical-align: middle;
+}
+
+.register .agreement a {
+    float: right;
+    color: #ccc;
+}
+
+.register .btn-default {
+    width: 100%;
+    background-color: #9d9494;
+    border: none;
+    color: #fff;
+}
+
+
+/* 회원가입 완료 */
+.register_done {
+    padding: 50px 5%;
+    background: #fff;
+    border: #ddd solid 1px;
+    text-align: center;
+}
+
+.sb_box{
+    position: relative;
+    display: none;
+}
+.sb_box a {
+    color: #000;
+    box-sizing: border-box;
+}
+.sb_box .btn_box{
+    margin: 0 auto;
+    width: 60%;
+    border: #eee solid 1px;
+}
+.sb_box a.btn-orange-line {
+    border: #ff5f15 solid 1px;
+    width: 49.3333%;
+    box-sizing: border-box;
+}
+.sb_box a.btn-big {
+    width: 60%;
+}
+
+
+.modal-content {
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+}
+
+.modal-header {
+    padding-bottom: 5px;
+    border: none;
+}
+
+.btn {
+    position: relative;
+}
+
+.btn-default {
+    border-width: 1px;
+}
+
+.form-control {
+    border: #ddd 1px solid;
+    box-shadow: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+label {
+    display: block;
+}
+
+
+/*
+    Note: It is best to use a less version of this file ( see http://css2less.cc
+    For the media queries use @screen-sm-min instead of 768px.
+    For .omb_spanOr use @body-bg instead of white.
+*/
+/* 2017-05-13 로그인화면 */
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+
+.omb_login .omb_authTitle {
+    text-align: center;
+    line-height: 300%;
+}
+
+.omb_login .omb_socialButtons a {
+    color: white; // In yourUse @body-bg
+opacity:0.9;
+}
+.omb_login .omb_socialButtons a:hover {
+    color: white;
+    opacity:1;
+}
+.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
+.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
+.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
+
+
+.omb_login .omb_loginOr {
+    position: relative;
+    font-size: 1.5em;
+    color: #aaa;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+.omb_login .omb_loginOr .omb_hrOr {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+.omb_login .omb_loginOr .omb_spanOr {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -0.6em;
+    margin-left: -1.5em;
+    background-color: white;
+    width: 3em;
+    text-align: center;
+}
+
+.omb_login .omb_loginForm .input-group.i {
+    width: 2em;
+}
+.omb_login .omb_loginForm  .help-block {
+    color: red;
+}
+
+
+@media (min-width: 768px) {
+    .omb_login .omb_forgotPwd {
+        text-align: right;
+        margin-top:10px;
+    }
+}
+
+
+.card-columns {
+    padding: 10px;
+}
+
+.card {
+    margin-bottom: 10px;
+}

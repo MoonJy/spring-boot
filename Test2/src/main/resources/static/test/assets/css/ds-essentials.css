@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.btn, .btn-group, .btn span {
+    /* margin: 5px 5px 5px 0; */
+    font-weight: 400;
+}
+
+.modal-footer, .modal-body .footer, .register .btn_wrap {
+    text-align: center;
+}
+
+.modal-body .border-right {
+    border-right: 1px solid #dddddd;
+}
+
+.modal-body .contact.c01 {
+    float: left;
+    display: inline-block;
+    width: 70%!important;
+    box-sizing: border;
+}
+
+.modal-body .contact.c02 {
+    float: left;
+    display: inline-block;
+    width: 20%!important;
+    margin-left: 0px;
+    box-sizing: border;
+}
+
+
+.modal-body .group {
+    margin-bottom: 10px!important;
+    height: 40px;
+}
+
+.modal-body .group span {
+    width: 5%;
+    text-align: center;
+}
+
+.modal-body .group label, .modal-body .group input, .modal-body .group select, .modal-body .group span {
+    display: inline-block;
+    float: left;
+    line-height: 40px;
+}
+
+.modal-body label {
+    width: 30%;
+    margin-bottom: 0!important;
+}
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:messages</value>
+            </list>
+        </property>
+        <property name="cacheSeconds" value="60" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+    
+    <bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+        <constructor-arg>
+            <ref local="messageSource" />
+        </constructor-arg>
+    </bean>
+    
+    <bean id="commonMessageSource" class="com.eggmoney.ws.utils.Messages" factory-method="getInstance">
+        <constructor-arg    ref="messageSourceAccessor" />
+    </bean>
+    
+</beans>    
