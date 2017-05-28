@@ -61,7 +61,7 @@ public class UserController {
         }
 	}
 	
-	@RequestMapping(value ="/congratuaion.do", method = RequestMethod.GET)
+	@RequestMapping(value ="/congratuation.do", method = RequestMethod.GET)
 	public String congratuation(HttpSession session, Model model, @ModelAttribute UserForm form){
 		String member_id = (String)session.getAttribute("MEMBER_ID");
 		if(!StringUtils.isBlank(member_id)){

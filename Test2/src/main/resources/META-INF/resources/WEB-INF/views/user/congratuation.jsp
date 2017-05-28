@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>IT 꾸자갤 회원 가입</title>
+    <title>회원가입 축하페이지</title>
 
     <%@ include file="../common/include_static.jsp"%>
 
@@ -30,11 +30,11 @@
                 </div>
 
 
-                <div class="sb_box">
+                <div class="">
                     <a href="<c:url value='/index.do'/>" class="btn btn-orange">
                         <i class="fa fa-home" aria-hidden="true"></i> <span>홈페이지 가기</span>
                     </a>
-                    <a href="<c:url value='/login.do?targetUrl=/index.do'/>" class="btn btn-orange">
+                    <a href="<c:url value='/common/login.do'/>" class="btn btn-orange">
                         <i class="fa fa-user" aria-hidden="true"></i> <span>로그인 하기</span>
                     </a>
                 </div>

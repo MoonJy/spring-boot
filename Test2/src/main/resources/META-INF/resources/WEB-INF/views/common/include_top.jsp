@@ -17,6 +17,14 @@
                     <a class="nav-link" href="<c:url value="/user/register.do"/>">회원가입</a>
                 </sec:authorize>
             </li>
+            
+            <li class="nav-item">
+                <%--<a class="nav-link disabled" href="#">Disabled</a>--%>
+                <sec:authorize access="isAuthenticated()"><a class="nav-link"
+                                                             href="<c:url value="/logout.do"/>">로그아웃</a></sec:authorize>
+                <sec:authorize access="isAnonymous()"><a class="nav-link"
+                                                         href="<c:url value="/login.do"/>">로그인</a></sec:authorize>
+            </li>
     	</ul>
     </div>
 

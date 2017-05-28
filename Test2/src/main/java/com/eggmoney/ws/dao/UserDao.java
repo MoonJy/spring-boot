@@ -12,4 +12,6 @@ public interface UserDao {
 
 	public void insert(User user) throws DataAccessException;
 
+	public void updateLoginFailCount(User user) throws DataAccessException;
+
 }

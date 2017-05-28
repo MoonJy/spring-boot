@@ -1,5 +1,6 @@
 package com.eggmoney.ws.domain.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -13,162 +14,189 @@ import com.eggmoney.ws.define.AccountType;
 import com.eggmoney.ws.define.MemberType;
 import com.eggmoney.ws.utils.Messages;
 
-
 /**
  * Created by comec on 2017-05-06.
  */
 
 public class User implements UserDetails {
 
-    /**
-     * serialVesionUID for Session Clustering
-     */
-    private static final long serialVersionUID = 7000566578275540831L;
+	/**
+	 * serialVesionUID for Session Clustering
+	 */
+	private static final long serialVersionUID = 7000566578275540831L;
 
+	public enum STATUS {
+		DISABLE("0", Messages.getMessage("USER.STATUS.DISABLE")), ENABLE("1",
+				Messages.getMessage("USER.STATUS.ENABLE")), DORMANT("2",
+						Messages.getMessage("USER.STATUS.DORMANT")), BLOCK("8",
+								Messages.getMessage("USER.STATUS.BLOCK")), WITHDRAWAL("9",
+										Messages.getMessage("USER.STATUS.WITHDRAWAL")),;
 
-    public enum STATUS {
-        DISABLE("0", Messages.getMessage("USER.STATUS.DISABLE")),
-        ENABLE("1", Messages.getMessage("USER.STATUS.ENABLE")),
-        DORMANT("2", Messages.getMessage("USER.STATUS.DORMANT")),
-        BLOCK("8", Messages.getMessage("USER.STATUS.BLOCK")),
-        WITHDRAWAL("9", Messages.getMessage("USER.STATUS.WITHDRAWAL")),
-        ;
+		private String code;
+		private String name;
 
-        private String code;
-        private String name;
+		STATUS(String code, String name) {
+			this.code = code;
+			this.name = name;
+		}
 
-        STATUS(String code, String name) {
-            this.code = code;
-            this.name = name;
-        }
+		public String getCode() {
+			return code;
+		}
 
-        public String getCode() {
-            return code;
-        }
+		public String getName() {
+			return name;
+		}
 
-        public String getName() {
-            return name;
-        }
+		public static STATUS get(String code) {
+			for (STATUS item : values()) {
+				if (StringUtils.equals(code, item.getCode())) {
+					return item;
+				}
+			}
+			return null;
+		}
+	}
 
-        public static STATUS get(String code) {
-            for (STATUS item : values()) {
-                if (StringUtils.equals(code, item.getCode())) {
-                    return item;
-                }
-            }
-            return null;
-        }
-    }
+	public enum PERSON_AGREE {
+		AGREE("Y"), NOT_AGREE("N");
 
-    public enum USER_GRADE {
-        USER("USER"),
-        ADMIN("ADMIN")
-        ;
+		private String code;
 
-        private String code;
+		PERSON_AGREE(String code) {
+			this.code = code;
+		}
 
-        USER_GRADE(String code) {
-            this.code = code;
-        }
+		public String getCode() {
+			return code;
+		}
 
-        public String getCode() {
-            return code;
-        }
+		public static PERSON_AGREE get(String code) {
+			for (PERSON_AGREE item : PERSON_AGREE.values()) {
+				if (StringUtils.equals(code, item.getCode())) {
+					return item;
+				}
+			}
+			return null;
+		}
+	}
 
-        public static USER_GRADE get(String code) {
-            for (USER_GRADE item : USER_GRADE.values()) {
-                if (StringUtils.equals(code, item.getCode())) {
-                    return item;
-                }
-            }
-            return null;
-        }
-    }
+	public enum USER_GRADE {
+		USER("USER"), ADMIN("ADMIN");
 
-    private Long member_no;
-    private String member_id;
-    private String password;
-    private String name;
-    private int member_type = MemberType.USER.getCode();
-    private int account_type = AccountType.DS.getCode();
-    private String status;
-    private String phone_no;
-    private String nickname;
-    private String mobile_no;
-    private String email;
-    private String profile_url;
-    private String profile_file;
-    private String profile_path;
-    private int mailing_yn = 0;
-    private int sms_yn = 0;
-    private String grade;
-    private Date withdrawal_date;
-    private Date create_date;
-    private Date update_date;
-    private String allowed_ip = "*";
-    private String person_agree = "Y";
-    private Date person_agree_date;
-    private int attempt_login_count = 0;
-    private Date last_logined;
-    private String login_ip;
-    private Date password_ch_date;
-    private String creator;
-    private String updator;
+		private String code;
 
-    private String plain_password;
-    private String validate_password;
-    private String original_password;
+		USER_GRADE(String code) {
+			this.code = code;
+		}
 
-    private Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-    
-    public void addAuthority(GrantedAuthority auth) {
-        authorities.add(auth);
-    }
-    
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+		public String getCode() {
+			return code;
+		}
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+		public static USER_GRADE get(String code) {
+			for (USER_GRADE item : USER_GRADE.values()) {
+				if (StringUtils.equals(code, item.getCode())) {
+					return item;
+				}
+			}
+			return null;
+		}
+	}
 
-    @Override
-    public String getUsername() {
-        return member_id;
-    }
+	private Long member_no;
+	private String member_id;
+	private String password;
+	private String name;
+	private int member_type = MemberType.USER.getCode();
+	private int account_type = AccountType.DS.getCode();
+	private String status;
+	private String phone_no;
+	private String nickname;
+	private String mobile_no;
+	private String email;
+	private String profile_url;
+	private String profile_file;
+	private String profile_path;
+	private int mailing_yn = 0;
+	private int sms_yn = 0;
+	private String grade;
+	private Date withdrawal_date;
+	private Date create_date;
+	private Date update_date;
+	private String allowed_ip = "*";
+	private String person_agree = "Y";
+	private Date person_agree_date;
+	private int attempt_login_count = 0;
+	private Date last_logined;
+	private String login_ip;
+	private Date password_ch_date;
+	private String creator;
+	private String updator;
+	private String isLoginTreat;
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return isEnabled();
-    }
+	private String plain_password;
+	private String validate_password;
+	private String original_password;
 
-    @Override
-    public boolean isAccountNonLocked() {
-        int count = Integer.parseInt(Messages.getMessage("POLICY.ACCOUNT.LOCK.COUNT"));
-        return attempt_login_count < count;
-    }
+	private Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        if (password_ch_date == null) {
-            return true;
-        }
-        Calendar cal = Calendar.getInstance();
-        int period = Integer.parseInt(Messages.getMessage("POLICY.PASSWORD.CHANGE.PERIOD"));
-        cal.add(Calendar.MONTH, -period);
+	public void addAuthority(GrantedAuthority auth) {
+		authorities.add(auth);
+	}
 
-        Calendar chDate = Calendar.getInstance();
-        chDate.setTime(password_ch_date);
-        return !cal.after(chDate);
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return StringUtils.equals(getStatus(), STATUS.ENABLE.getCode());
-    }
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return member_id;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return isEnabled();
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		int count = Integer.parseInt(Messages.getMessage("POLICY.ACCOUNT.LOCK.COUNT"));
+		return attempt_login_count < count;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		if (password_ch_date == null) {
+			return true;
+		}
+		Calendar cal = Calendar.getInstance();
+		int period = Integer.parseInt(Messages.getMessage("POLICY.PASSWORD.CHANGE.PERIOD"));
+		cal.add(Calendar.MONTH, -period);
+
+		Calendar chDate = Calendar.getInstance();
+		chDate.setTime(password_ch_date);
+		return !cal.after(chDate);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return StringUtils.equals(getStatus(), STATUS.ENABLE.getCode());
+	}
+
+	public String getIsLoginTreat() {
+		return isLoginTreat;
+	}
+
+	public void setLoginTreat(String isLoginTreat) {
+		this.isLoginTreat = isLoginTreat;
+	}
 
 	public Long getMember_no() {
 		return member_no;
@@ -330,6 +358,10 @@ public class User implements UserDetails {
 		this.allowed_ip = allowed_ip;
 	}
 
+	public boolean isPersonAgree() {
+		return PERSON_AGREE.get(getPerson_agree()) == PERSON_AGREE.AGREE;
+	}
+
 	public String getPerson_agree() {
 		return person_agree;
 	}
@@ -429,5 +461,21 @@ public class User implements UserDetails {
 	public void setAuthorities(Collection<GrantedAuthority> authorities) {
 		this.authorities = authorities;
 	}
-    
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("ID=").append(member_id).append(",");
+		sb.append("NAME=").append(name).append(",");
+		sb.append("ENABLE=").append(getStatus()).append(",");
+		sb.append("isAccountNonExpired=").append(isAccountNonExpired()).append(",");
+		sb.append("ATTEMP_COUNT=").append(attempt_login_count).append(",");
+		sb.append("isAccountNonLocked=").append(isAccountNonLocked()).append(",");
+		if (password_ch_date != null) {
+			sb.append("PASSWORD_CH_DATE=").append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(password_ch_date))
+					.append(",");
+		}
+		sb.append("isCredentialsNonExpired=").append(isCredentialsNonExpired());
+		return sb.toString();
+	}
 }

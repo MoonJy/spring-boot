@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eggmoney.ws.dao.BoardDao">
+	<select id="findListCount" parameterType="map" resultType="int">
+        SELECT
+          COUNT(*)
+        FROM
+          T_BOARD
+        WHERE
+          'x' = 'x'
+    </select>
+
+    <select id="findList" parameterType="map" resultType="Board">
+        SELECT
+            CNO
+              *
+            FROM T_BOARD S
+        WHERE 'X' = 'X'
+        LIMIT #{startRow}, #{itemSize}
+    </select>
+</mapper>

@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.eggmoney.ws.dao.AssigendAuthorityDao;
@@ -28,6 +30,8 @@ public class UserServiceImpl implements UserService{
 	@Resource
 	private AssigendAuthorityDao assigendAuthorityDao;
 	
+	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		logger.info("user_id:"+username);
@@ -41,7 +45,7 @@ public class UserServiceImpl implements UserService{
 		for(AssignedAuthority auth : authList){
 			user.addAuthority(auth);
 		}
-		return null;
+		return user;
 	}
 
 	@Override
@@ -54,4 +58,14 @@ public class UserServiceImpl implements UserService{
 	public void insert(User user) throws ServiceException {
 		userDao.insert(user);
 	}
+
+	@Override
+	public void updateLoginFailCount(User user) throws ServiceException {
+		userDao.updateLoginFailCount(user);
+	}
+
+	/*@Override
+	public PasswordEncoder passwordEncoder() throws ServiceException {
+		return this.passwordEncoder;
+	}*/
 }

@@ -100,7 +100,7 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-                    <c:if test="${hasRole eq true || userForm.cmd eq 'create'}">
+                    <c:if test="${userForm.cmd eq 'create'}">
                         <div class="group pw">
                             <form:password path="user.plain_password" class="form-control" placeholder="비밀번호(영문,숫자 조합 8~16자 입력)" maxlength="16" />
                             <form:errors path="user.plain_password" element="div" cssClass="alert alert-mini alert-danger margin-bottom-30" />
